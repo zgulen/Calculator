@@ -19,6 +19,22 @@ btnContainer.addEventListener("click", (e) => {
     calculate()
     updateDisplay()
   }
+  if (e.target.classList.contains("ac")) {
+    currOperand = ""
+    prevOperand = ""
+    operation = ""
+    updateDisplay()
+  }
+  if (e.target.classList.contains("pm")) {
+    if (!currOperand) return
+    currOperand = -currOperand
+    updateDisplay()
+  }
+  if (e.target.classList.contains("percent")) {
+    if (!currOperand) return
+    currOperand /= 100;
+    updateDisplay()
+  }
 })
 
 
