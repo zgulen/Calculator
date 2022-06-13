@@ -49,6 +49,9 @@ const appendNumber = (num) => {
 }
 
 const updateDisplay = () => {
+  if (currOperand.toString().length > 11){
+    currOperand = Number(currOperand).toExponential(4)
+  }
   currDisp.textContent = currOperand
   prevDisp.textContent = `${prevOperand} ${operation}`
 
