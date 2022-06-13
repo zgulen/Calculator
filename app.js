@@ -5,6 +5,7 @@ const btnContainer = document.querySelector(".buttons-container")
 let currOperand = ""
 let prevOperand = ""
 let operation = ""
+let equalOrPercent = false
 
 btnContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
@@ -18,6 +19,7 @@ btnContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("equal")) {
     calculate()
     updateDisplay()
+    equalOrPercent = true
   }
   if (e.target.classList.contains("ac")) {
     currOperand = ""
@@ -34,6 +36,7 @@ btnContainer.addEventListener("click", (e) => {
     if (!currOperand) return
     currOperand /= 100;
     updateDisplay()
+    equalOrPercent = true
   }
 })
 
@@ -44,8 +47,14 @@ const appendNumber = (num) => {
     return
   } 
     if (num === "." && currOperand.includes(".")) return
-    if (currOperand.length > 9) return
+    if (currOperand.length > 10) return
+    if (equalOrPercent){
+      currOperand = num
+      equalOrPercent = false
+      return
+    }
     currOperand += num
+
 }
 
 const updateDisplay = () => {
